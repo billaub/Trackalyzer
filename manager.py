@@ -4,7 +4,7 @@ import spotipy.util as util
 import os
 
 
-class SpotifyManager():
+class SpotifyManager:
     sp = None
     token_path = os.getcwd() + "/.token"
     cache_path = os.getcwd() + "/.cache-" + os.environ.get('SPOTIFY_MAIL')
