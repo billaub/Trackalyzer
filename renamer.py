@@ -1,9 +1,10 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 # coding=utf-8
 
 import os
 import eyed3
 import mutagen
+
 
 class bcolors:
     HEADER = '\033[95m'
@@ -16,6 +17,15 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 
+class Renamer:
+    def __init__(self):
+        pass
+
+    def rename(self):
+        pass
+
+
+'''
 print bcolors.OKGREEN + "Treating " + os.getcwd() + bcolors.ENDC
 for file in os.listdir(os.getcwd()):
     try:
@@ -36,3 +46,4 @@ for file in os.listdir(os.getcwd()):
     except OSError as e:
         print bcolors.FAIL + "OS Error with " + file + " " + str(e) + bcolors.ENDC
 print bcolors.OKGREEN + "done" + bcolors.ENDC
+'''

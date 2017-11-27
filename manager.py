@@ -2,6 +2,7 @@
 import spotipy
 import spotipy.util as util
 import os
+from renamer import bcolors
 
 
 class SpotifyManager:
@@ -43,4 +44,5 @@ class SpotifyManager:
             print "removing " + self.token_path
             os.remove(self.token_path)
             return False
+        print bcolors.OKGREEN + "Spotify Manager successfully authenticated" + bcolors.ENDC
         return True
