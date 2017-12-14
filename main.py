@@ -11,7 +11,6 @@ if __name__ == "__main__":
     (options, args) = parser.parse_args()
     t = Tagger()
     r = Renamer()
-    if options.rename:
-        r.rename()
-    if options.tag:
-        t.tag(config.DIR)
+    config.RENAME = options.rename
+    config.TAG = options.tag
+    t.tag(config.DIR)

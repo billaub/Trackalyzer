@@ -6,8 +6,9 @@ from pprint import pprint
 from renamer import bcolors
 
 from manager import SpotifyManager
+from renamer import Renamer
+
 import mutagen
-import eyed3
 import config
 import os
 
@@ -23,7 +24,8 @@ class Tagger:
         for filename in os.listdir(dir):
             if os.path.isdir(dir + filename):
                 self.tag(dir + filename + '/')
-            else:
+                continue
+            if config.TAG:
                 song = self.djv.recognize(FileRecognizer, dir + filename)
                 song = self.sp.sp.search(q=song['song_name'], type='track', limit=1)
                 try:
@@ -34,6 +36,9 @@ class Tagger:
                 except IndexError:
                     print(bcolors.FAIL + "unable to get tags for " + filename + bcolors.ENDC)
                     pass
+            if config.RENAME:
+                r = Renamer()
+                r.rename(dir + filename, dir)
         pass
 
     def apply_tags(self, song, artist, name):
@@ -44,4 +49,3 @@ class Tagger:
             f.save()
         except AttributeError as e:
             print(bcolors.FAIL + e.message + bcolors.ENDC)
-        import ipdb; ipdb.set_trace()
