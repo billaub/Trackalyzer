@@ -1,24 +1,25 @@
 #! /usr/bin/env python
 
-from dejavu import Dejavu
-from dejavu.recognize import FileRecognizer
+import os
 from pprint import pprint
-from renamer import bcolors
-
-from manager import SpotifyManager
-from renamer import Renamer
 
 import mutagen
+from dejavu import Dejavu
+from dejavu.recognize import FileRecognizer
+
 import config
-import os
+from manager import SpotifyManager
+from renamer import Renamer
+from renamer import bcolors
 
 
 class Tagger:
     def __init__(self):
-        self.djv = Dejavu(config.CONFIG)
-        self.sp = SpotifyManager()
-        while not self.sp.is_authenticated():
-            self.sp.auth()
+        if config.TAG:
+            self.djv = Dejavu(config.CONFIG)
+            self.sp = SpotifyManager()
+            while not self.sp.is_authenticated():
+                self.sp.auth()
 
     def tag(self, dir):
         for filename in os.listdir(dir):
@@ -35,6 +36,9 @@ class Tagger:
                     self.apply_tags(dir + filename, song_artist, song_name)
                 except IndexError:
                     print(bcolors.FAIL + "unable to get tags for " + filename + bcolors.ENDC)
+                    pass
+                except:
+                    print(bcolors.FAiL + "Wrong file type: " + filename + bcolors.ENDC)
                     pass
             if config.RENAME:
                 r = Renamer()
