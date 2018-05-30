@@ -3,6 +3,7 @@ from tagger import Tagger
 from renamer import Renamer
 from optparse import OptionParser
 import config
+import os
 
 if __name__ == "__main__":
     parser = OptionParser()
@@ -14,4 +15,4 @@ if __name__ == "__main__":
     config.TAG = options.tag
     t = Tagger()
     r = Renamer()
-    t.tag(options.dir or config.DIR)
+    t.tag(options.dir or config.DIR or os.getcwd())
