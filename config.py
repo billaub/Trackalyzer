@@ -11,3 +11,4 @@ CONFIG = {
 DIR = os.getenv('MUSIC_DIR')
 RENAME = True
 TAG = True
+VERBOSE = False

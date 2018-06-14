@@ -27,6 +27,8 @@ class Tagger:
                 self.tag(dir + filename + '/')
                 continue
             if config.TAG:
+                if config.VERBOSE:
+                    print("Tagging: " + dir + filename)
                 song = self.djv.recognize(FileRecognizer, dir + filename)
                 song = self.sp.sp.search(q=song['song_name'], type='track', limit=1)
                 try:

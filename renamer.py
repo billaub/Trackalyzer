@@ -3,6 +3,7 @@
 
 import os
 import mutagen
+import config
 
 
 class bcolors:
@@ -22,6 +23,8 @@ class Renamer:
 
     def rename(self, song, dir):
         try:
+            if config.VERBOSE:
+                print("Try renaming: " + song)
             audiofile = mutagen.File(song)
             artist = unicode(audiofile.tags.get('TPE1').text[0])
             title = unicode(audiofile.tags.get('TIT2').text[0])
