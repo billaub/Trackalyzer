@@ -4,7 +4,7 @@ Trackalyzer is a tool that gives you the opportunity to tag and rename your musi
 
 This tool works with python3.
 
-# Requirements
+# Requirements
 
 All you need to do :
 
